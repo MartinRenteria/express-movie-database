@@ -46,10 +46,64 @@ app.get("/Crew", async (req, res) => {
     res.json(allCrew)
 })
 
+app.get("/Crew/:id", async (req, res) => {
+    const crewById = await Crew.findByPk(req.params.id)
+    res.json(crewById)
+})
+
+app.post("/Crew", async (req, res) => {
+    await Crew.create(req.body)
+    res.send("Thanks for adding a new Crew!")
+    console.log("Thanks for adding a new Crew!")
+})
+
+app.put("/Crew/:id", async (req, res) => {
+    await Crew.update(req.body, {
+        where : {id : req.params.id}
+    })
+    res.send("Thanks for updating this Crew!")
+    console.log("Thanks for updating this Crew!")
+})
+
+app.delete('/Crew/:id', async (req, res) => {
+    await Crew.destroy(
+        {where : {id : req.params.id}}
+    )
+    res.send("Crew has been deleted")
+    console.log("Crew has been deleted")
+})
+
 // CRUD routes for Cast Modal 
 app.get("/Cast", async (req, res) => {
     const allCast = await Cast.findAll()
     res.json(allCast)
+})
+
+app.get("/Cast/:id", async (req, res) => {
+    const castById = await Cast.findByPk(req.params.id)
+    res.json(castById)
+})
+
+app.post("/Cast", async (req, res) => {
+    await Cast.create(req.body)
+    res.send("Thanks for adding a new Cast!")
+    console.log("Thanks for adding a new Cast!")
+})
+
+app.put("/Cast/:id", async (req, res) => {
+    await Cast.update(req.body, {
+        where : {id : req.params.id}
+    })
+    res.send("Thanks for updating this Cast!")
+    console.log("Thanks for updating this Cast!")
+})
+
+app.delete('/Cast/:id', async (req, res) => {
+    await Cast.destroy(
+        {where : {id : req.params.id}}
+    )
+    res.send("Cast has been deleted")
+    console.log("Cast has been deleted")
 })
 
 app.listen(port, () => {console.log(`Server listening at http://localhost:${port}`)})
