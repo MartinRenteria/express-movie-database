@@ -5,7 +5,8 @@ class Crew extends Model {}
 
 Crew.init(
   {
-    director: DataTypes.STRING
+    director: DataTypes.STRING,
+    writer: DataTypes.STRING
   },
   {
     sequelize,
