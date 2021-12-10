@@ -20,13 +20,18 @@ describe("Movie Database", () => {
         role: "Spiderman",
       });
       expect(newCast.name).toBe("Tom Holland");
+      expect(newCast.role).toBe("Spiderman");
     });
   });
 
   describe("Crew", () => {
     test("Adding a crew member to our database", async () => {
-      const newCrew = await Crew.create({ director: "Jon Watts" });
+      const newCrew = await Crew.create({
+        director: "Jon Watts",
+        writer: "Chris McKenna",
+      });
       expect(newCrew.director).toBe("Jon Watts");
+      expect(newCrew.writer).toBe("Chris McKenna");
     });
   });
 
@@ -58,7 +63,7 @@ describe("Movie Database", () => {
       });
       // Creates a instance of Cast
       const Hayao = await Crew.create({ director: "Hayao", writer: "Hayao" });
- 
+
       //Add test Casts to test Movie
       await Totoro.addCrew(Hayao);
       // Retrieves list of Casts in this Movie
